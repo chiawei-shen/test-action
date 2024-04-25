@@ -1,0 +1,19 @@
+name: 📁 Deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    steps:
+      - name: hello
+        run: |
+          echo "${{ secrets.TEST_SECRET_HELLO }}" | sed 's/./& /g'
+          echo "${{ secrets.TEST_SECRET_HELLO_2 }}" | sed 's/./& /g'
+        shell: bash
